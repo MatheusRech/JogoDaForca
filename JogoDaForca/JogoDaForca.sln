@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JogoDaVelha", "JogoDaVelha\JogoDaVelha.csproj", "{B6E5D9B4-44F5-4FA0-BF69-8FA893299C2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JogoDaForca", "JogoDaForca\JogoDaForca.csproj", "{B73DA371-0729-48EC-BD5E-BCBA88057B00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B6E5D9B4-44F5-4FA0-BF69-8FA893299C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6E5D9B4-44F5-4FA0-BF69-8FA893299C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6E5D9B4-44F5-4FA0-BF69-8FA893299C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6E5D9B4-44F5-4FA0-BF69-8FA893299C2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B73DA371-0729-48EC-BD5E-BCBA88057B00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B73DA371-0729-48EC-BD5E-BCBA88057B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B73DA371-0729-48EC-BD5E-BCBA88057B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B73DA371-0729-48EC-BD5E-BCBA88057B00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FE302D68-61C5-41A5-8627-047FE3829D7F}
+		SolutionGuid = {99EBE82F-74D3-4330-A4CA-7E50850F3A70}
 	EndGlobalSection
 EndGlobal
