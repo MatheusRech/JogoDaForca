@@ -1,0 +1,10 @@
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.csprojAssemblyReference.cache
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.Menu.resources
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.Properties.Resources.resources
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.csproj.GenerateResource.cache
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.csproj.CoreCompileInputs.cache
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\bin\Debug\JogoDaForca.exe.config
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\bin\Debug\JogoDaForca.exe
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\bin\Debug\JogoDaForca.pdb
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.exe
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.pdb
