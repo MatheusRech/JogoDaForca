@@ -8,3 +8,7 @@ E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\bin\Debug\JogoDaForca.exe
 E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\bin\Debug\JogoDaForca.pdb
 E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.exe
 E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.pdb
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\bin\Debug\HtmlAgilityPack.dll
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\bin\Debug\HtmlAgilityPack.pdb
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\bin\Debug\HtmlAgilityPack.xml
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.csproj.CopyComplete

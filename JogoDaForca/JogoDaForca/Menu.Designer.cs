@@ -1,4 +1,6 @@
-﻿namespace JogoDaForca
+﻿using System.Collections.Generic;
+
+namespace JogoDaForca
 {
     partial class Menu
     {
@@ -29,27 +31,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
-            this.escolhaBancoPalavras = new System.Windows.Forms.ListBox();
             this.textoLBEscolhaBancoPalavra = new System.Windows.Forms.Label();
             this.Titulo = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.nome = new System.Windows.Forms.TextBox();
+            this.textNome = new System.Windows.Forms.Label();
             this.imgMenu = new System.Windows.Forms.PictureBox();
             this.botaoJogar = new System.Windows.Forms.Button();
+            this.bancoPalavrasURL = new System.Windows.Forms.TextBox();
+            this.textBancoPalavrasURL = new System.Windows.Forms.Label();
+            this.lbBancoPalavras = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgMenu)).BeginInit();
             this.SuspendLayout();
-            // 
-            // escolhaBancoPalavras
-            // 
-            this.escolhaBancoPalavras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
-            this.escolhaBancoPalavras.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.escolhaBancoPalavras.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.escolhaBancoPalavras.FormattingEnabled = true;
-            this.escolhaBancoPalavras.ItemHeight = 29;
-            this.escolhaBancoPalavras.Location = new System.Drawing.Point(300, 178);
-            this.escolhaBancoPalavras.Name = "escolhaBancoPalavras";
-            this.escolhaBancoPalavras.Size = new System.Drawing.Size(328, 31);
-            this.escolhaBancoPalavras.TabIndex = 1;
             // 
             // textoLBEscolhaBancoPalavra
             // 
@@ -71,26 +63,26 @@
             this.Titulo.TabIndex = 3;
             this.Titulo.Text = "Jogo da Forca";
             // 
-            // textBox1
+            // nome
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(299, 88);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(324, 37);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "Seu Nome";
+            this.nome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.nome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nome.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nome.Location = new System.Drawing.Point(299, 88);
+            this.nome.Name = "nome";
+            this.nome.Size = new System.Drawing.Size(329, 37);
+            this.nome.TabIndex = 4;
+            this.nome.Text = "Seu Nome";
             // 
-            // label1
+            // textNome
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(295, 62);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 23);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Nome:";
+            this.textNome.AutoSize = true;
+            this.textNome.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textNome.Location = new System.Drawing.Point(295, 62);
+            this.textNome.Name = "textNome";
+            this.textNome.Size = new System.Drawing.Size(59, 23);
+            this.textNome.TabIndex = 5;
+            this.textNome.Text = "Nome:";
             // 
             // imgMenu
             // 
@@ -116,6 +108,40 @@
             this.botaoJogar.TabIndex = 0;
             this.botaoJogar.Text = "Jogar";
             this.botaoJogar.UseVisualStyleBackColor = false;
+            this.botaoJogar.Click += new System.EventHandler(this.jogar);
+            // 
+            // bancoPalavrasURL
+            // 
+            this.bancoPalavrasURL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.bancoPalavrasURL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bancoPalavrasURL.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bancoPalavrasURL.Location = new System.Drawing.Point(299, 257);
+            this.bancoPalavrasURL.Name = "bancoPalavrasURL";
+            this.bancoPalavrasURL.Size = new System.Drawing.Size(329, 37);
+            this.bancoPalavrasURL.TabIndex = 7;
+            this.bancoPalavrasURL.Text = "Seu Nome";
+            // 
+            // textBancoPalavrasURL
+            // 
+            this.textBancoPalavrasURL.AutoSize = true;
+            this.textBancoPalavrasURL.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBancoPalavrasURL.Location = new System.Drawing.Point(296, 231);
+            this.textBancoPalavrasURL.Name = "textBancoPalavrasURL";
+            this.textBancoPalavrasURL.Size = new System.Drawing.Size(369, 23);
+            this.textBancoPalavrasURL.TabIndex = 8;
+            this.textBancoPalavrasURL.Text = "Escolha um metodo para escolher as palavras";
+            // 
+            // lbBancoPalavras
+            // 
+            this.lbBancoPalavras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.lbBancoPalavras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbBancoPalavras.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBancoPalavras.FormattingEnabled = true;
+            this.lbBancoPalavras.Location = new System.Drawing.Point(299, 175);
+            this.lbBancoPalavras.Name = "lbBancoPalavras";
+            this.lbBancoPalavras.Size = new System.Drawing.Size(326, 37);
+            this.lbBancoPalavras.TabIndex = 9;
+            this.lbBancoPalavras.SelectedIndexChanged += new System.EventHandler(this.lbSelect);
             // 
             // Menu
             // 
@@ -123,17 +149,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbBancoPalavras);
+            this.Controls.Add(this.textBancoPalavrasURL);
+            this.Controls.Add(this.bancoPalavrasURL);
             this.Controls.Add(this.imgMenu);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textNome);
+            this.Controls.Add(this.nome);
             this.Controls.Add(this.Titulo);
             this.Controls.Add(this.textoLBEscolhaBancoPalavra);
-            this.Controls.Add(this.escolhaBancoPalavras);
             this.Controls.Add(this.botaoJogar);
             this.DoubleBuffered = true;
             this.Name = "Menu";
             this.Text = "Jogo da Forca - Menu";
-            this.Load += new System.EventHandler(this.Menu_Load);
+            this.Load += new System.EventHandler(this.menuLoad);
             ((System.ComponentModel.ISupportInitialize)(this.imgMenu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -142,12 +170,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button botaoJogar;
-        private System.Windows.Forms.ListBox escolhaBancoPalavras;
-        private System.Windows.Forms.Label textoLBEscolhaBancoPalavra;
-        private System.Windows.Forms.Label Titulo;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox imgMenu;
+        protected System.Windows.Forms.Button botaoJogar;
+        protected System.Windows.Forms.Label textoLBEscolhaBancoPalavra;
+        protected System.Windows.Forms.Label Titulo;
+        protected System.Windows.Forms.TextBox nome;
+        protected System.Windows.Forms.Label textNome;
+        protected System.Windows.Forms.PictureBox imgMenu;
+        protected System.Windows.Forms.TextBox bancoPalavrasURL;
+        protected System.Windows.Forms.Label textBancoPalavrasURL;
+        private System.Windows.Forms.ComboBox lbBancoPalavras;
     }
 }
