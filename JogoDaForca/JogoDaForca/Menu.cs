@@ -35,6 +35,9 @@ namespace JogoDaForca
             {
                 MessageBox.Show(info);
             }
+            this.Hide();
+            Game f = new Game();
+            f.Show();
         }
 
         private void lbSelect(object sender, EventArgs e)

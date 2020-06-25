@@ -52,6 +52,13 @@
     <Compile Include="BancoPalavras.cs" />
     <Compile Include="ArquivoTexto.cs" />
     <Compile Include="EntradaUsuario.cs" />
+    <Compile Include="Game.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Game.Designer.cs">
+      <DependentUpon>Game.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Jogo.cs" />
     <Compile Include="Site.cs" />
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -62,6 +69,9 @@
     <Compile Include="PalavrasInternas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Game.resx">
+      <DependentUpon>Game.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
