@@ -11,6 +11,8 @@ namespace JogoDaForca
     {
         public List<string> Palavras { get; private set; } = new List<string>();
         public List<Label> Labels { get; private set; } = new List<Label>();
+        public int Tentativas = 0;
+
 
         public void addPalavra(string palavra)
         {
@@ -19,7 +21,7 @@ namespace JogoDaForca
 
         public void addLabel(int i, List<Label> labels)
         {
-            foreach(Label label in labels)
+            foreach (Label label in labels)
             {
                 i--;
                 Labels.Add(label);
@@ -30,39 +32,93 @@ namespace JogoDaForca
             }
         }
 
+        public void removeAllLabes()
+        {
+            foreach(Label l in Labels)
+            {
+                l.Text = "_";
+            }
+            Labels.Clear();
+        }
+
         public bool checkLetter(char l, string palavra)
         {
-            if (palavra.Contains(l))
+            palavra = palavra.ToUpper();
+            foreach(char c in palavra)
             {
-                return true;
+                if(l == c)
+                {
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
-        public List<Label> letterIndex(char l, string palavra, List<Label> labels)
+        public void changeLabels(char l, string palavra)
         {
             palavra = palavra.ToUpper();
             int i = 0;
             int count = 0;
+            char[] check = new char[palavra.Length];
+
             foreach(char c in palavra)
             {
+                check[i] = c;
                 i++;
-                if(c == l)
-                {
-                    foreach(Label label in labels)
-                    {
-                        count++;
-                        if(count == i)
-                        {
-                            label.Text = l.ToString();
-                        }
-                    }
-                }
-                
             }
-            return labels;
+            foreach (Label label in Labels)
+            {
+                if(check[count] == l)
+                {
+                    label.Text = check[count].ToString();
+                }
+                count++;
+            }
+        }
+        public bool checkWord(string palavra)
+        {
+            int i = 0;
+            char[] check2 = new char[palavra.Length];
+            palavra = palavra.ToUpper();
+
+            foreach(char c in palavra)
+            {
+                check2[i] = c;
+                i++;
+            }
+
+            for(int j = 0; j < palavra.Length; j++)
+            {
+                if(char.Parse(Labels[j].Text) != check2[j])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public string novaPalavra()
+        {
+            string palavra = "";
+            foreach(string s in Palavras)
+            {
+                palavra = s;
+            }
+            Palavras.Remove(palavra);
+            return palavra;
+        }
+
+        public void btClick(Button b, string currentWord)
+        {
+            b.Visible = false;
+            if (checkLetter(char.Parse(b.Text), currentWord) == true)
+            {
+                changeLabels(char.Parse(b.Text), currentWord);
+            }
+            else
+            {
+                Tentativas = Tentativas - 1;
+            }
         }
     }
 }
