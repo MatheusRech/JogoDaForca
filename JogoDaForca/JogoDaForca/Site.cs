@@ -38,8 +38,13 @@ namespace JogoDaForca
             this.url = informacoes;
         }
 
-        public string[] palavras()
+        public string palavra()
         {
+            if(url.Length == 0)
+            {
+                throw new SiteInvalidoException($"A url está vazia", url);
+            }
+
             try
             {
                 request = (HttpWebRequest)WebRequest.Create(url);
@@ -64,16 +69,15 @@ namespace JogoDaForca
                     response.Close();
                     readStream.Close();
 
-                    if(htmlDocument.DocumentNode.SelectSingleNode("/html/body") == null)
-                    {
-                        MessageBox.Show(":(");
-                    }
+                    Random rand = new Random();
 
-                    return htmlDocument.DocumentNode.SelectSingleNode("/html/body").InnerText.Split(' ');
+                    string[] palavras = htmlDocument.DocumentNode.SelectSingleNode("/html/body").InnerText.Split(' ');
+
+                    return palavras[rand.Next(palavras.Length)];
                 }
                 else
                 {
-                    throw new WebException("Status da conexão desconhecido", WebExceptionStatus.UnknownError);
+                    throw new SiteInvalidoException("Erro ao tentar recuperar o site", url);
                 }
 
             }
@@ -82,14 +86,18 @@ namespace JogoDaForca
                 switch (exception.Status)
                 {
                     case WebExceptionStatus.ProtocolError:
-                        throw new Exception("Houve um erro no protocolo de busca do site, tente novamente.");
+                        throw new SiteInvalidoException("Houve um erro no protocolo de busca do site, tente novamente.", url);
                     case WebExceptionStatus.Timeout:
-                        throw new Exception("O tempo de busca do site excedeu o limite, tente novamente.");
+                        throw new SiteInvalidoException("O tempo de busca do site excedeu o limite, tente novamente.", url);
                     case WebExceptionStatus.ConnectFailure:
-                        throw new Exception("Houve um erro na conexão do site, verifique sua conexão e tente novamente.");
+                        throw new SiteInvalidoException("Houve um erro na conexão do site, verifique sua conexão e tente novamente.", url);
                     default:
-                        throw new Exception("Houve um erro desconhecido na conexão do site, tente novamente.");
+                        throw new SiteInvalidoException("Houve um erro desconhecido na conexão do site, tente novamente.", url);
                 }
+            }
+            catch(SiteInvalidoException e)
+            {
+                throw e;
             }
         }
     }

@@ -38,9 +38,15 @@ namespace JogoDaForca
             }
         }
 
-        public string[] palavras()
+        public string palavra()
         {
-            return palavrasUsuario;
+            if(palavrasUsuario.Length == 0)
+            {
+                throw new EntradaUsuarioIncorretaExcpetion("É necessecario digitar as palavras conforme o exemplo: Joao,Maria,Fernando");
+            }
+
+            Random rand = new Random();
+            return palavrasUsuario[rand.Next(palavrasUsuario.Length)];
         }
     }
 }

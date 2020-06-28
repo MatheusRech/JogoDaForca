@@ -29,7 +29,7 @@ namespace JogoDaForca
             path = informacoes;
         }
 
-        public string[] palavras()
+        public string palavra()
         {
             StreamReader readStream = null;
 
@@ -45,14 +45,26 @@ namespace JogoDaForca
                 }
                 else
                 {
-                    throw new Exception("Arquivo não encontrado.");
+                    throw new ArquivoInvalidoException("O arquivo não existe ou não pode ser encontrado", path);
                 }
-            }catch(Exception e)
+                
+                if(aux.Length == 0)
+                {
+                    throw new ArquivoInvalidoException("O arquivo está vazio", path);
+                }
+            }
+            catch (ArquivoInvalidoException e)
             {
                 throw e;
             }
+            catch (Exception e)
+            {
+                throw new ArquivoInvalidoException(e.Message, path);
+            }
 
-            return aux;
+            Random rand = new Random();
+
+            return aux[rand.Next(aux.Length)];
         }
     }
 }

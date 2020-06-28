@@ -25,9 +25,10 @@ namespace JogoDaForca
             return;
         }
 
-        public string[] palavras()
+        public string palavra()
         {
-            return palavrinhas;
+            Random random = new Random();
+            return palavrinhas[random.Next(palavrinhas.Length)] ;
         }
     }
 }

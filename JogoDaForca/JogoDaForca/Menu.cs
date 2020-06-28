@@ -26,18 +26,53 @@ namespace JogoDaForca
                 lbBancoPalavras.Items.Add(item.nomeExbicao());
             }
 
+            bancoPalavrasURL.Visible = false;
+            textBancoPalavrasURL.Visible = false;
+
         }
 
         private void jogar(object sender, EventArgs e)
         {
-            itensLB[lbBancoPalavras.SelectedIndex].informacoes(bancoPalavrasURL.Text);
-            foreach(string info in itensLB[lbBancoPalavras.SelectedIndex].palavras())
+            try
             {
-                MessageBox.Show(info);
+                itensLB[lbBancoPalavras.SelectedIndex].informacoes(bancoPalavrasURL.Text);
+                string palavra = itensLB[lbBancoPalavras.SelectedIndex].palavra();
+                Player player = new Player(nome.Text, palavra);
+
+                this.Hide();
+                Game f = new Game();
+                f.Show();
             }
-            this.Hide();
-            Game f = new Game();
-            f.Show();
+            catch (ArquivoInvalidoException arquivoInvalido)
+            {
+                MessageBox.Show(arquivoInvalido.mensagem, $"Erro no acesso ao arquivo: {arquivoInvalido.path}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            catch(SiteInvalidoException siteInvalido)
+            {
+                MessageBox.Show(siteInvalido.mensagem, $"Erro no acesso ao site: {siteInvalido.url}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            catch(EntradaUsuarioIncorretaExcpetion entradaInvalida)
+            {
+                MessageBox.Show(entradaInvalida.mensagem, "Palavra de entrada incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            catch(NomeInvalidoExcpetion nomeInvalido)
+            {
+                MessageBox.Show(nomeInvalido.mensagem, "Nome invalido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            catch(PalavraInvalidaException palavraInvalida)
+            {
+                MessageBox.Show(palavraInvalida.mensagem, $"Palavra: {palavraInvalida.palavra}, não pode ser aceita pelo sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            catch(Exception excpetion)
+            {
+                MessageBox.Show(excpetion.Message, "Erro no sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void lbSelect(object sender, EventArgs e)
@@ -51,7 +86,7 @@ namespace JogoDaForca
 
                 textBancoPalavrasURL.Text = resultado[0];
                 bancoPalavrasURL.Text = resultado[1];
-            }catch(NotImplementedException exception)
+            }catch(NotImplementedException)
             {
                 bancoPalavrasURL.Visible = false;
                 textBancoPalavrasURL.Visible = false;
