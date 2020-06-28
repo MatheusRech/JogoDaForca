@@ -29,7 +29,7 @@ namespace JogoDaForca
             path = informacoes;
         }
 
-        public string palavra()
+        public string[] palavras()
         {
             StreamReader readStream = null;
 
@@ -62,9 +62,7 @@ namespace JogoDaForca
                 throw new ArquivoInvalidoException(e.Message, path);
             }
 
-            Random rand = new Random();
-
-            return aux[rand.Next(aux.Length)];
+            return aux;
         }
     }
 }

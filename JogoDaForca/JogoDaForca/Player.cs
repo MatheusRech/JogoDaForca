@@ -12,13 +12,13 @@ namespace JogoDaForca
 
         public int pontos { get; private set; }
 
-        public string palavra { get; private set; }
+        public string[] palavras { get; private set; }
 
-        public Player(string nome, string palavra)
+        public Player(string nome, string[] palavras)
         {
-            if (palavra.Length == 0)
+            if (palavras.Length == 0)
             {
-                throw new PalavraInvalidaException("Palavra invalida", palavra);
+                throw new PalavraInvalidaException("Palavra invalida");
             }
             else if(nome.Length == 0)
             {
@@ -27,22 +27,12 @@ namespace JogoDaForca
 
             this.nome = nome;
             this.pontos = 0;
-            this.palavra = palavra;
+            this.palavras = palavras;
         }
 
         public void setPontos(int pontos)
         {
             this.pontos = pontos;
-        }
-
-        public void setPalavra(string palavra)
-        {
-            if(palavra.Length == 0)
-            {
-                throw new PalavraInvalidaException($"A palavra: {palavra} esta vazia", palavra);
-            }
-
-            this.palavra = palavra;
         }
     }
 }

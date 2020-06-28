@@ -10,12 +10,9 @@ namespace JogoDaForca
     {
         public string mensagem { get; private set; }
 
-        public string palavra { get; private set; }
-
-        public PalavraInvalidaException(string mensagem, string palavra)
+        public PalavraInvalidaException(string mensagem)
         {
             this.mensagem = mensagem;
-            this.palavra = palavra;
         }
     }
 }

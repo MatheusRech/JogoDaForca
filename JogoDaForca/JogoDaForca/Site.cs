@@ -38,7 +38,7 @@ namespace JogoDaForca
             this.url = informacoes;
         }
 
-        public string palavra()
+        public string[] palavras()
         {
             if(url.Length == 0)
             {
@@ -69,11 +69,9 @@ namespace JogoDaForca
                     response.Close();
                     readStream.Close();
 
-                    Random rand = new Random();
-
                     string[] palavras = htmlDocument.DocumentNode.SelectSingleNode("/html/body").InnerText.Split(' ');
 
-                    return palavras[rand.Next(palavras.Length)];
+                    return palavras;
                 }
                 else
                 {

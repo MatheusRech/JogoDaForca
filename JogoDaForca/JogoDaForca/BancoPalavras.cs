@@ -8,6 +8,6 @@ namespace JogoDaForca
         String[] selecionado();
         String nomeExbicao();
         void informacoes(String informacoes);
-        string palavra();
+        string[] palavras();
     }
 }

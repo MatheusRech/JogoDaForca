@@ -36,8 +36,8 @@ namespace JogoDaForca
             try
             {
                 itensLB[lbBancoPalavras.SelectedIndex].informacoes(bancoPalavrasURL.Text);
-                string palavra = itensLB[lbBancoPalavras.SelectedIndex].palavra();
-                Player player = new Player(nome.Text, palavra);
+                string[] palavras = itensLB[lbBancoPalavras.SelectedIndex].palavras();
+                Player player = new Player(nome.Text, palavras);
 
                 this.Hide();
                 Game f = new Game();
@@ -65,7 +65,7 @@ namespace JogoDaForca
             }
             catch(PalavraInvalidaException palavraInvalida)
             {
-                MessageBox.Show(palavraInvalida.mensagem, $"Palavra: {palavraInvalida.palavra}, não pode ser aceita pelo sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(palavraInvalida.mensagem, $"ocorreu um erro com as palavras do sistema, tente novamente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             catch(Exception excpetion)
