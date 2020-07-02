@@ -1,11 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Xml;
-using HtmlAgilityPack;
 
 namespace JogoDaForca
 {
@@ -19,6 +17,18 @@ namespace JogoDaForca
         public Site()
         {
 
+        }
+
+        private string GetPlainTextFromHtml(string htmlString)
+        {
+            var regexCss = new Regex("(\\<script(.+?)>\\ )|(\\<style(.+?)>\\ )", RegexOptions.Singleline | RegexOptions.IgnoreCase);
+            htmlString = regexCss.Replace(htmlString, string.Empty);
+            htmlString = Regex.Replace(htmlString, "<.*?>", string.Empty);
+            htmlString = Regex.Replace(htmlString, "{.*?}", string.Empty);
+            htmlString = Regex.Replace(htmlString, @"^\s+$[\r\n]*", "", RegexOptions.Multiline);
+            htmlString = htmlString.Replace(" ", string.Empty);
+
+            return htmlString;
         }
 
         public String[] selecionado()
@@ -40,6 +50,11 @@ namespace JogoDaForca
 
         public string[] palavras()
         {
+            if(url.Length == 0)
+            {
+                throw new SiteInvalidoException("A url está vazia", url);
+            }
+
             try
             {
                 request = (HttpWebRequest)WebRequest.Create(url);
@@ -57,23 +72,27 @@ namespace JogoDaForca
 
                     string data = readStream.ReadToEnd();
 
-                    HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
+                    //HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
 
-                    htmlDocument.LoadHtml(data);
+                    //htmlDocument.LoadHtml(data);
 
-                    response.Close();
-                    readStream.Close();
+                    //response.Close();
+                    //readStream.Close();
 
-                    if(htmlDocument.DocumentNode.SelectSingleNode("/html/body") == null)
+                    //string[] palavras = htmlDocument.DocumentNode.SelectSingleNode("/html/body").InnerText.Split(' ');
+
+                    string[] palavras = GetPlainTextFromHtml(data).Split(' ');
+
+                    foreach(string palavra in palavras)
                     {
-                        MessageBox.Show(":(");
+                        MessageBox.Show(palavra);
                     }
 
-                    return htmlDocument.DocumentNode.SelectSingleNode("/html/body").InnerText.Split(' ');
+                    return palavras;
                 }
                 else
                 {
-                    throw new WebException("Status da conexão desconhecido", WebExceptionStatus.UnknownError);
+                    throw new SiteInvalidoException("Erro ao tentar recuperar o site", url);
                 }
 
             }
@@ -82,14 +101,18 @@ namespace JogoDaForca
                 switch (exception.Status)
                 {
                     case WebExceptionStatus.ProtocolError:
-                        throw new Exception("Houve um erro no protocolo de busca do site, tente novamente.");
+                        throw new SiteInvalidoException("Houve um erro no protocolo de busca do site, tente novamente.", url);
                     case WebExceptionStatus.Timeout:
-                        throw new Exception("O tempo de busca do site excedeu o limite, tente novamente.");
+                        throw new SiteInvalidoException("O tempo de busca do site excedeu o limite, tente novamente.", url);
                     case WebExceptionStatus.ConnectFailure:
-                        throw new Exception("Houve um erro na conexão do site, verifique sua conexão e tente novamente.");
+                        throw new SiteInvalidoException("Houve um erro na conexão do site, verifique sua conexão e tente novamente.", url);
                     default:
-                        throw new Exception("Houve um erro desconhecido na conexão do site, tente novamente.");
+                        throw new SiteInvalidoException("Houve um erro desconhecido na conexão do site, tente novamente.", url);
                 }
+            }
+            catch(SiteInvalidoException e)
+            {
+                throw e;
             }
         }
     }

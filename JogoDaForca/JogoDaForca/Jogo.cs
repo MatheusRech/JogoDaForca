@@ -7,10 +7,10 @@ using System.Windows.Forms;
 
 namespace JogoDaForca
 {
-    class Jogo
+    public class Jogo
     {
         public List<string> Palavras { get; private set; } = new List<string>();
-        public List<Label> Labels { get; private set; } = new List<Label>();
+        public List<Label> labels { get; private set; } = new List<Label>();
         public int Tentativas = 0;
 
 
@@ -19,28 +19,23 @@ namespace JogoDaForca
             Palavras.Add(palavra);
         }
 
-        public void addLabel(int i, List<Label> labels)
+        public void addLabel(List<Label> labels)
         {
-            foreach (Label label in labels)
-            {
-                i--;
-                Labels.Add(label);
-                if(i == 0)
-                {
-                    return;
-                }
-            }
+            this.labels = labels;
         }
 
         public void removeAllLabes()
         {
-            foreach(Label l in Labels)
+            foreach(Label l in labels)
             {
                 l.Text = "_";
             }
-            Labels.Clear();
+            labels.Clear();
         }
 
+        /*
+         * A classe String ja faz isso: Contains()
+         * 
         public bool checkLetter(char l, string palavra)
         {
             palavra = palavra.ToUpper();
@@ -53,6 +48,7 @@ namespace JogoDaForca
             }
             return false;
         }
+        */
         public void changeLabels(char l, string palavra)
         {
             palavra = palavra.ToUpper();
@@ -60,18 +56,15 @@ namespace JogoDaForca
             int count = 0;
             char[] check = new char[palavra.Length];
 
-            foreach(char c in palavra)
+            if (palavra.Contains(l))
             {
-                check[i] = c;
-                i++;
-            }
-            foreach (Label label in Labels)
-            {
-                if(check[count] == l)
+                for(int x = 0; x < palavra.Length; x++)
                 {
-                    label.Text = check[count].ToString();
+                    if(palavra[x] == l)
+                    {
+                        labels[x].Text = l.ToString();
+                    }
                 }
-                count++;
             }
         }
         public bool checkWord(string palavra)
@@ -88,7 +81,7 @@ namespace JogoDaForca
 
             for(int j = 0; j < palavra.Length; j++)
             {
-                if(char.Parse(Labels[j].Text) != check2[j])
+                if(char.Parse(labels[j].Text) != check2[j])
                 {
                     return false;
                 }
@@ -99,25 +92,34 @@ namespace JogoDaForca
 
         public string novaPalavra()
         {
-            string palavra = "";
+            Random rand = new Random();
+            string palavra = Palavras[rand.Next(0, Palavras.Count)];
+            /*
+             * 
+             * Dei uma modificada Matheus
+             * 
+             * 
             foreach(string s in Palavras)
             {
                 palavra = s;
             }
+            */
             Palavras.Remove(palavra);
             return palavra;
         }
 
-        public void btClick(Button b, string currentWord)
+        public bool btClick(Button b, string currentWord)
         {
             b.Visible = false;
-            if (checkLetter(char.Parse(b.Text), currentWord) == true)
+            if (currentWord.ToUpper().Contains(b.Text))
             {
                 changeLabels(char.Parse(b.Text), currentWord);
+                return true;
             }
             else
             {
                 Tentativas = Tentativas - 1;
+                return false;
             }
         }
     }

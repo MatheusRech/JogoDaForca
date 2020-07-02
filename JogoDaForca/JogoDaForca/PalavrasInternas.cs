@@ -27,6 +27,7 @@ namespace JogoDaForca
 
         public string[] palavras()
         {
+
             return palavrinhas;
         }
     }

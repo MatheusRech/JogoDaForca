@@ -12,315 +12,116 @@ namespace JogoDaForca
 {
     public partial class Game : Form
     {
-        Jogo Gaming = new Jogo();
-        public bool comecoJogo = true;
-        public string currentWord;
-        public List<Label> Labels = new List<Label>();
+        private Jogo gaming;
+        private Menu menu;
+        private FimJogo fimJogo;
+        private Player jogador;
+        private bool comecoJogo;
+        private string currentWord;
+        private List<Label> labels = new List<Label>();
+        private int acertos;
+        private int erros;
 
-        public Game()
+        public Game(Player jogador, Menu menu)
         {
+            this.gaming = new Jogo();
+            this.jogador = jogador;
+            this.comecoJogo = true;
+            this.menu = menu;
+            this.acertos = 0;
+            this.erros = 0;
+
+            foreach (string palavra in jogador.palavras)
+            {
+                gaming.addPalavra(palavra);
+            }
+
             InitializeComponent();
+
+            addAllLabels();
+
             Inicio();
         }
 
         public void Inicio()
         {
-            displayForca(Gaming.Tentativas);
-            if (currentWord == null && comecoJogo == true)
+            displayForca(gaming.Tentativas);
+            if (currentWord == null && comecoJogo == true || currentWord == "")
             {
-                comecoJogo = false;
-                addAllLabels(Labels);
-                Gaming.addPalavra("testdois");
-                Gaming.addPalavra("test");
-                currentWord = Gaming.novaPalavra();
-                Gaming.addLabel(currentWord.Length, Labels);
-                Gaming.Tentativas = 6;
-                displayForca(Gaming.Tentativas);
+                carregaForca();
             }
-            else if (Gaming.Tentativas == 0)
+            else if (gaming.Tentativas == 0)
             {
-                this.Close();
-            }
-            else if(Gaming.checkWord(currentWord) == true)
-            {
-                currentWord = Gaming.novaPalavra();
-                Gaming.removeAllLabes();
-                Gaming.addLabel(currentWord.Length, Labels);
-                Gaming.Tentativas = 6;
-            }
-            if(currentWord == "")
-            {
-                this.Close();
-            }
+                if(acertos > 0)
+                {
+                    this.jogador.setPontos(0);
+                }
+                else
+                {
+                    this.jogador.setPontos(-10);
+                }
 
-
-            foreach (Label l in Gaming.Labels)
-            {
-                l.Visible = true;
+                this.fimJogo = new FimJogo(this.menu, this, false, this.jogador);
             }
         }
 
-        private void A_Click(object sender, EventArgs e)
+        private void carregaForca()
         {
-            Gaming.btClick(A, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
+            comecoJogo = false;
+            currentWord = gaming.novaPalavra();
+            gaming.addLabel(this.labels);
+            gaming.Tentativas = 6;
+            displayForca(gaming.Tentativas);
+            for (int x = 0; x < currentWord.Length; x++)
             {
-                resetBtns();
+                gaming.labels[x].Visible = true;
             }
-            Inicio();
-            
-        }
-        private void B_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(B, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
         }
 
-        private void C_Click(object sender, EventArgs e)
+        /*
+         * 
+         * Aqui eu mudei, pq é o seguinte, o object sender, é o objeto que foi clicado, então em todo os botoes, você pode fazer uma unica função
+         * 
+         */
+
+        private void letraClick(object sender, EventArgs e)
         {
-            Gaming.btClick(C, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
+            Button objeto = (Button)Convert.ChangeType(sender, typeof(Button));
+
+            if(gaming.btClick(objeto, currentWord)) { acertos++; } else { erros++; }
+
+            if (gaming.checkWord(currentWord) == true)
             {
-                resetBtns();
+                switch (erros)
+                {
+                    case 1:
+                        this.jogador.setPontos(15);
+                        break;
+                    case 2:
+                        this.jogador.setPontos(10);
+                        break;
+                    case 3:
+                        this.jogador.setPontos(8);
+                        break;
+                    case 4:
+                        this.jogador.setPontos(7);
+                        break;
+                    case 5:
+                        this.jogador.setPontos(6);
+                        break;
+                    case 6:
+                        this.jogador.setPontos(5);
+                        break;
+                }
+                this.fimJogo = new FimJogo(this.menu, this, true, this.jogador);
             }
-            Inicio();
+            else
+            {
+                Inicio();
+            }
         }
 
-        private void D_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(D, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void E_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(E, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void F_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(F, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void G_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(G, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void H_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(H, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void I_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(I, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void J_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(J, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void K_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(K, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void L_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(L, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void M_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(M, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void N_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(N, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void O_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(O, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void P_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(P, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void Q_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(Q, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void R_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(R, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void S_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(S, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void T_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(T, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void U_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(U, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void V_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(V, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void W_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(W, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void X_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(X, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void Y_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(Y, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        private void Z_Click(object sender, EventArgs e)
-        {
-            Gaming.btClick(Z, currentWord);
-            if (Gaming.checkWord(currentWord) == true)
-            {
-                resetBtns();
-            }
-            Inicio();
-        }
-
-        public void addAllLabels(List<Label> labels)
+        public void addAllLabels()
         {
             labels.Add(label1); labels.Add(label2); labels.Add(label3); labels.Add(label4);
             labels.Add(label5); labels.Add(label6); labels.Add(label7); labels.Add(label8);
@@ -350,75 +151,29 @@ namespace JogoDaForca
         public void displayForca(int i)
         {
             int stage = 6 - i;
-            if(stage == 0)
+            switch (stage)
             {
-                stage0.Visible = true;
-                stage1.Visible = false;
-                stage2.Visible = false;
-                stage3.Visible = false;
-                stage4.Visible = false;
-                stage5.Visible = false;
-                stage6.Visible = false;
-            }
-            else if (stage == 1)
-            {
-                stage0.Visible = false;
-                stage1.Visible = true;
-                stage2.Visible = false;
-                stage3.Visible = false;
-                stage4.Visible = false;
-                stage5.Visible = false;
-                stage6.Visible = false;
-            }
-            else if (stage == 2)
-            {
-                stage0.Visible = false;
-                stage1.Visible = false;
-                stage2.Visible = true;
-                stage3.Visible = false;
-                stage4.Visible = false;
-                stage5.Visible = false;
-                stage6.Visible = false;
-            }
-            else if (stage == 3)
-            {
-                stage0.Visible = false;
-                stage1.Visible = false;
-                stage2.Visible = false;
-                stage3.Visible = true;
-                stage4.Visible = false;
-                stage5.Visible = false;
-                stage6.Visible = false;
-            }
-            else if (stage == 4)
-            {
-                stage0.Visible = false;
-                stage1.Visible = false;
-                stage2.Visible = false;
-                stage3.Visible = false;
-                stage4.Visible = true;
-                stage5.Visible = false;
-                stage6.Visible = false;
-            }
-            else if (stage == 5)
-            {
-                stage0.Visible = false;
-                stage1.Visible = false;
-                stage2.Visible = false;
-                stage3.Visible = false;
-                stage4.Visible = false;
-                stage5.Visible = true;
-                stage6.Visible = false;
-            }
-            else if (stage == 6)
-            {
-                stage0.Visible = false;
-                stage1.Visible = false;
-                stage2.Visible = false;
-                stage3.Visible = false;
-                stage4.Visible = false;
-                stage5.Visible = false;
-                stage6.Visible = true;
+                case 0:
+                    imagemForca.Image = Properties.Resources.Forca_Estagio_0;
+                    break;
+                case 1:
+                    imagemForca.Image = Properties.Resources.Forca_Estagio_1;
+                    break;
+                case 2:
+                    imagemForca.Image = Properties.Resources.Forca_Estagio_2;
+                    break;
+                case 3:
+                    imagemForca.Image = Properties.Resources.Forca_Estagio_3;
+                    break;
+                case 4:
+                    imagemForca.Image = Properties.Resources.Forca_Estagio_4;
+                    break;
+                case 5:
+                    imagemForca.Image = Properties.Resources.Forca_Estagio_5;
+                    break;
+                case 6:
+                    imagemForca.Image = Properties.Resources.Forca_Estagio_6;
+                    break;
             }
         }
     }

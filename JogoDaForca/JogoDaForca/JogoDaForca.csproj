@@ -49,9 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArquivoInvalidoException.cs" />
     <Compile Include="BancoPalavras.cs" />
     <Compile Include="ArquivoTexto.cs" />
     <Compile Include="EntradaUsuario.cs" />
+    <Compile Include="EntradaUsuarioIncorretaExcpetion.cs" />
+    <Compile Include="FimJogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FimJogo.Designer.cs">
+      <DependentUpon>FimJogo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Game.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +67,9 @@
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
     <Compile Include="Jogo.cs" />
+    <Compile Include="NomeInvalidoExcpetion.cs" />
+    <Compile Include="PalavraInvalidaException.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Site.cs" />
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -69,6 +80,10 @@
     <Compile Include="PalavrasInternas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteInvalidoException.cs" />
+    <EmbeddedResource Include="FimJogo.resx">
+      <DependentUpon>FimJogo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Game.resx">
       <DependentUpon>Game.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,6 +119,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgMenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forca_Estagio_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forca_Estagio_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forca_Estagio_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forca_Estagio_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forca_Estagio_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forca_Estagio_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\venceu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\perdeu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Jogadores.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

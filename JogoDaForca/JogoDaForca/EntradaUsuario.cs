@@ -40,6 +40,11 @@ namespace JogoDaForca
 
         public string[] palavras()
         {
+            if(palavrasUsuario.Length == 0)
+            {
+                throw new EntradaUsuarioIncorretaExcpetion("É necessecario digitar as palavras conforme o exemplo: Joao,Maria,Fernando");
+            }
+
             return palavrasUsuario;
         }
     }
