@@ -118,10 +118,34 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Forca_Estagio_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Forca_Estagio_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Forca_Estagio_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forca_Estagio_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Forca_Estagio_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forca_Estagio_6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Forca_Estagio_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forca_Estagio_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="venceu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\venceu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imgMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Forca_Estagio_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forca_Estagio_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Forca_Estagio_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forca_Estagio_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Forca_Estagio_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forca_Estagio_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Forca_Estagio_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forca_Estagio_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="perdeu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\perdeu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

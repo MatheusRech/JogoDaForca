@@ -27,3 +27,4 @@ C:\Users\mathe\OneDrive\Área de Trabalho\JogoDaForca\JogoDaForca\JogoDaForca\ob
 C:\Users\mathe\OneDrive\Área de Trabalho\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.exe
 C:\Users\mathe\OneDrive\Área de Trabalho\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.pdb
 E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.Game.resources
+E:\GitHub\JogoDaForca\JogoDaForca\JogoDaForca\obj\Debug\JogoDaForca.FimJogo.resources

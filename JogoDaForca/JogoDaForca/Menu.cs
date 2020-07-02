@@ -35,13 +35,17 @@ namespace JogoDaForca
         {
             try
             {
+                if(lbBancoPalavras.SelectedIndex == -1)
+                {
+                    throw new Exception("Você deve escolher uma fonte de palavras");
+                }
                 itensLB[lbBancoPalavras.SelectedIndex].informacoes(bancoPalavrasURL.Text);
                 string[] palavras = itensLB[lbBancoPalavras.SelectedIndex].palavras();
                 Player player = new Player(nome.Text, palavras);
 
+                Game game = new Game(player, this);
+                game.Show();
                 this.Hide();
-                Game f = new Game();
-                f.Show();
             }
             catch (ArquivoInvalidoException arquivoInvalido)
             {

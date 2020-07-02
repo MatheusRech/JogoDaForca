@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace JogoDaForca
 {
-    class Player
+    public class Player
     {
         public string nome { get; private set; }
 
@@ -25,8 +26,10 @@ namespace JogoDaForca
                 throw new NomeInvalidoExcpetion("Nome de player vazio", nome);
             }
 
-            this.nome = nome;
-            this.pontos = 0;
+            nome = Regex.Replace(nome, @"\s+", "");
+
+            this.nome = nome.Trim();
+            this.pontos = 20;
             this.palavras = palavras;
         }
 

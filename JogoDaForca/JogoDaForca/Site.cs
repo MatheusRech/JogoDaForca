@@ -1,11 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Xml;
-using HtmlAgilityPack;
 
 namespace JogoDaForca
 {
@@ -19,6 +17,18 @@ namespace JogoDaForca
         public Site()
         {
 
+        }
+
+        private string GetPlainTextFromHtml(string htmlString)
+        {
+            var regexCss = new Regex("(\\<script(.+?)>\\ )|(\\<style(.+?)>\\ )", RegexOptions.Singleline | RegexOptions.IgnoreCase);
+            htmlString = regexCss.Replace(htmlString, string.Empty);
+            htmlString = Regex.Replace(htmlString, "<.*?>", string.Empty);
+            htmlString = Regex.Replace(htmlString, "{.*?}", string.Empty);
+            htmlString = Regex.Replace(htmlString, @"^\s+$[\r\n]*", "", RegexOptions.Multiline);
+            htmlString = htmlString.Replace(" ", string.Empty);
+
+            return htmlString;
         }
 
         public String[] selecionado()
@@ -42,7 +52,7 @@ namespace JogoDaForca
         {
             if(url.Length == 0)
             {
-                throw new SiteInvalidoException($"A url está vazia", url);
+                throw new SiteInvalidoException("A url está vazia", url);
             }
 
             try
@@ -62,14 +72,21 @@ namespace JogoDaForca
 
                     string data = readStream.ReadToEnd();
 
-                    HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
+                    //HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
 
-                    htmlDocument.LoadHtml(data);
+                    //htmlDocument.LoadHtml(data);
 
-                    response.Close();
-                    readStream.Close();
+                    //response.Close();
+                    //readStream.Close();
 
-                    string[] palavras = htmlDocument.DocumentNode.SelectSingleNode("/html/body").InnerText.Split(' ');
+                    //string[] palavras = htmlDocument.DocumentNode.SelectSingleNode("/html/body").InnerText.Split(' ');
+
+                    string[] palavras = GetPlainTextFromHtml(data).Split(' ');
+
+                    foreach(string palavra in palavras)
+                    {
+                        MessageBox.Show(palavra);
+                    }
 
                     return palavras;
                 }
