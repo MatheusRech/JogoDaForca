@@ -38,7 +38,6 @@ namespace JogoDaForca
 
         private void regitraPlayer(Player player)
         {
-            int pontos = player.pontos;
 
             XmlDocument doc = new XmlDocument();
             try
@@ -63,7 +62,7 @@ namespace JogoDaForca
             }
 
             XmlElement jogador = doc.CreateElement(player.nome);
-            jogador.InnerText = pontos.ToString();
+            jogador.InnerText = player.pontos.ToString();
 
             doc.DocumentElement.AppendChild(jogador);
             doc.Save(Environment.CurrentDirectory + "\\Files\\Jogadores.xml");
@@ -71,6 +70,7 @@ namespace JogoDaForca
 
         private void menuClick(object sender, EventArgs e)
         {
+            menu.carregaPlacar();
             menu.Show();
             this.Close();
         }

@@ -1142,6 +1142,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Game";
             this.Text = "Jogo da Forca - Game";
+            this.FormClosed += this.fechar;
             ((System.ComponentModel.ISupportInitialize)(this.imagemForca)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

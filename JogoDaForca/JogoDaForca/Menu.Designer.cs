@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Windows.Forms;
 
 namespace JogoDaForca
 {
@@ -40,6 +40,8 @@ namespace JogoDaForca
             this.bancoPalavrasURL = new System.Windows.Forms.TextBox();
             this.textBancoPalavrasURL = new System.Windows.Forms.Label();
             this.lbBancoPalavras = new System.Windows.Forms.ComboBox();
+            this.placar = new System.Windows.Forms.ListBox();
+            this.tituloPlacar = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgMenu)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +49,7 @@ namespace JogoDaForca
             // 
             this.textoLBEscolhaBancoPalavra.AutoSize = true;
             this.textoLBEscolhaBancoPalavra.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textoLBEscolhaBancoPalavra.Location = new System.Drawing.Point(295, 149);
+            this.textoLBEscolhaBancoPalavra.Location = new System.Drawing.Point(296, 119);
             this.textoLBEscolhaBancoPalavra.Name = "textoLBEscolhaBancoPalavra";
             this.textoLBEscolhaBancoPalavra.Size = new System.Drawing.Size(369, 23);
             this.textoLBEscolhaBancoPalavra.TabIndex = 2;
@@ -68,7 +70,7 @@ namespace JogoDaForca
             this.nome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
             this.nome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nome.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nome.Location = new System.Drawing.Point(299, 88);
+            this.nome.Location = new System.Drawing.Point(300, 62);
             this.nome.Name = "nome";
             this.nome.Size = new System.Drawing.Size(329, 37);
             this.nome.TabIndex = 4;
@@ -78,7 +80,7 @@ namespace JogoDaForca
             // 
             this.textNome.AutoSize = true;
             this.textNome.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textNome.Location = new System.Drawing.Point(295, 62);
+            this.textNome.Location = new System.Drawing.Point(297, 36);
             this.textNome.Name = "textNome";
             this.textNome.Size = new System.Drawing.Size(59, 23);
             this.textNome.TabIndex = 5;
@@ -88,9 +90,10 @@ namespace JogoDaForca
             // 
             this.imgMenu.Image = global::JogoDaForca.Properties.Resources.imgMenu;
             this.imgMenu.InitialImage = ((System.Drawing.Image)(resources.GetObject("imgMenu.InitialImage")));
-            this.imgMenu.Location = new System.Drawing.Point(21, 62);
+            this.imgMenu.Location = new System.Drawing.Point(20, 62);
             this.imgMenu.Name = "imgMenu";
-            this.imgMenu.Size = new System.Drawing.Size(251, 376);
+            this.imgMenu.Size = new System.Drawing.Size(270, 366);
+            this.imgMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgMenu.TabIndex = 6;
             this.imgMenu.TabStop = false;
             // 
@@ -102,7 +105,7 @@ namespace JogoDaForca
             this.botaoJogar.FlatAppearance.BorderSize = 0;
             this.botaoJogar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botaoJogar.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botaoJogar.Location = new System.Drawing.Point(618, 372);
+            this.botaoJogar.Location = new System.Drawing.Point(496, 362);
             this.botaoJogar.Name = "botaoJogar";
             this.botaoJogar.Size = new System.Drawing.Size(170, 66);
             this.botaoJogar.TabIndex = 0;
@@ -115,7 +118,7 @@ namespace JogoDaForca
             this.bancoPalavrasURL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
             this.bancoPalavrasURL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bancoPalavrasURL.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bancoPalavrasURL.Location = new System.Drawing.Point(299, 257);
+            this.bancoPalavrasURL.Location = new System.Drawing.Point(300, 227);
             this.bancoPalavrasURL.Name = "bancoPalavrasURL";
             this.bancoPalavrasURL.Size = new System.Drawing.Size(329, 37);
             this.bancoPalavrasURL.TabIndex = 7;
@@ -125,7 +128,7 @@ namespace JogoDaForca
             // 
             this.textBancoPalavrasURL.AutoSize = true;
             this.textBancoPalavrasURL.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBancoPalavrasURL.Location = new System.Drawing.Point(296, 231);
+            this.textBancoPalavrasURL.Location = new System.Drawing.Point(297, 201);
             this.textBancoPalavrasURL.Name = "textBancoPalavrasURL";
             this.textBancoPalavrasURL.Size = new System.Drawing.Size(369, 23);
             this.textBancoPalavrasURL.TabIndex = 8;
@@ -134,21 +137,46 @@ namespace JogoDaForca
             // lbBancoPalavras
             // 
             this.lbBancoPalavras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.lbBancoPalavras.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lbBancoPalavras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbBancoPalavras.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbBancoPalavras.FormattingEnabled = true;
-            this.lbBancoPalavras.Location = new System.Drawing.Point(299, 175);
+            this.lbBancoPalavras.Location = new System.Drawing.Point(300, 145);
             this.lbBancoPalavras.Name = "lbBancoPalavras";
             this.lbBancoPalavras.Size = new System.Drawing.Size(326, 37);
             this.lbBancoPalavras.TabIndex = 9;
             this.lbBancoPalavras.SelectedIndexChanged += new System.EventHandler(this.lbSelect);
+            // 
+            // placar
+            // 
+            this.placar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.placar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.placar.Font = new System.Drawing.Font("Impact", 16F);
+            this.placar.FormattingEnabled = true;
+            this.placar.ItemHeight = 26;
+            this.placar.Location = new System.Drawing.Point(691, 62);
+            this.placar.Name = "placar";
+            this.placar.Size = new System.Drawing.Size(255, 366);
+            this.placar.TabIndex = 10;
+            // 
+            // tituloPlacar
+            // 
+            this.tituloPlacar.AutoSize = true;
+            this.tituloPlacar.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tituloPlacar.Location = new System.Drawing.Point(687, 36);
+            this.tituloPlacar.Name = "tituloPlacar";
+            this.tituloPlacar.Size = new System.Drawing.Size(65, 23);
+            this.tituloPlacar.TabIndex = 11;
+            this.tituloPlacar.Text = "Placar:";
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(967, 440);
+            this.Controls.Add(this.tituloPlacar);
+            this.Controls.Add(this.placar);
             this.Controls.Add(this.lbBancoPalavras);
             this.Controls.Add(this.textBancoPalavrasURL);
             this.Controls.Add(this.bancoPalavrasURL);
@@ -179,5 +207,7 @@ namespace JogoDaForca
         protected System.Windows.Forms.TextBox bancoPalavrasURL;
         protected System.Windows.Forms.Label textBancoPalavrasURL;
         private System.Windows.Forms.ComboBox lbBancoPalavras;
+        private System.Windows.Forms.ListBox placar;
+        protected System.Windows.Forms.Label tituloPlacar;
     }
 }

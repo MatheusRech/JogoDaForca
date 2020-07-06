@@ -21,6 +21,7 @@ namespace JogoDaForca
         private List<Label> labels = new List<Label>();
         private int acertos;
         private int erros;
+        private bool endgame;
 
         public Game(Player jogador, Menu menu)
         {
@@ -30,6 +31,8 @@ namespace JogoDaForca
             this.menu = menu;
             this.acertos = 0;
             this.erros = 0;
+            this.endgame = false;
+
 
             foreach (string palavra in jogador.palavras)
             {
@@ -60,7 +63,7 @@ namespace JogoDaForca
                 {
                     this.jogador.setPontos(-10);
                 }
-
+                endgame = true;
                 this.fimJogo = new FimJogo(this.menu, this, false, this.jogador);
             }
         }
@@ -113,6 +116,7 @@ namespace JogoDaForca
                         this.jogador.setPontos(5);
                         break;
                 }
+                endgame = true;
                 this.fimJogo = new FimJogo(this.menu, this, true, this.jogador);
             }
             else
@@ -174,6 +178,14 @@ namespace JogoDaForca
                 case 6:
                     imagemForca.Image = Properties.Resources.Forca_Estagio_6;
                     break;
+            }
+        }
+
+        private void fechar(object sender, FormClosedEventArgs e)
+        {
+            if (!endgame)
+            {
+                this.menu.Close();
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace JogoDaForca
 {
@@ -14,7 +15,7 @@ namespace JogoDaForca
 
             itensLB.Add(new PalavrasInternas());
             itensLB.Add(new ArquivoTexto());
-            itensLB.Add(new Site());
+            //itensLB.Add(new Site());
             itensLB.Add(new EntradaUsuario());
 
         }
@@ -29,6 +30,45 @@ namespace JogoDaForca
             bancoPalavrasURL.Visible = false;
             textBancoPalavrasURL.Visible = false;
 
+            carregaPlacar();
+
+        }
+
+        public void carregaPlacar()
+        {
+            placar.Items.Clear();
+
+            List<Player> players = new List<Player>();
+
+            XmlDocument doc = new XmlDocument();
+            try
+            {
+                doc.Load(Environment.CurrentDirectory + "\\Files\\Jogadores.xml");
+            }
+            catch (Exception)
+            {
+                doc.LoadXml("<?xml version='1.0' encoding='utf-8'?><Jogadores></Jogadores>");
+            }
+
+            foreach (XmlNode no in doc.DocumentElement.ChildNodes)
+            {
+                Player jogador = new Player(no.Name, int.Parse(no.InnerText));
+
+                players.Add(jogador);
+            }
+
+            players.Sort(delegate(Player x, Player y)
+            {
+                if (x.pontos > y.pontos) return -1;
+                else return 1;
+            });
+
+            foreach (Player player in players)
+            {
+                placar.Items.Add(player.nome + " - " + player.pontos.ToString());
+            }
+
+            return;
         }
 
         private void jogar(object sender, EventArgs e)

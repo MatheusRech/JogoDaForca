@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Jogadores>
-  <Matheus>30</Matheus>
-  <SeuNome>0</SeuNome>
+  <Matheus>20</Matheus>
+  <Jair>29</Jair>
+  <Osvaldo>45</Osvaldo>
+  <Clarencio>14</Clarencio>
+  <Jailson>30</Jailson>
+  <SeuNome>-8</SeuNome>
+  <ClodovaldoDaSilva>15</ClodovaldoDaSilva>
 </Jogadores>

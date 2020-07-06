@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
+using System.Text;
 
 namespace JogoDaForca
 {
@@ -29,6 +31,18 @@ namespace JogoDaForca
             path = informacoes;
         }
 
+        private static string removeAcentuacao(string text)
+        {
+            StringBuilder sbReturn = new StringBuilder();
+            var arrayText = text.Normalize(NormalizationForm.FormD).ToCharArray();
+            foreach (char letter in arrayText)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(letter) != UnicodeCategory.NonSpacingMark)
+                    sbReturn.Append(letter);
+            }
+            return sbReturn.ToString();
+        }
+
         public string[] palavras()
         {
             StreamReader readStream = null;
@@ -41,7 +55,11 @@ namespace JogoDaForca
                 {
                     readStream = new StreamReader(path);
 
-                    aux = readStream.ReadToEnd().Split(' ');
+                    string texto = readStream.ReadToEnd();
+
+                    texto = removeAcentuacao(texto);
+
+                    aux = texto.Split(' ');
                 }
                 else
                 {

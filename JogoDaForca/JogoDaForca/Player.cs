@@ -21,7 +21,7 @@ namespace JogoDaForca
             {
                 throw new PalavraInvalidaException("Palavra invalida");
             }
-            else if(nome.Length == 0)
+            if(nome.Length == 0)
             {
                 throw new NomeInvalidoExcpetion("Nome de player vazio", nome);
             }
@@ -31,6 +31,20 @@ namespace JogoDaForca
             this.nome = nome.Trim();
             this.pontos = 20;
             this.palavras = palavras;
+        }
+
+        public Player(string nome, int pontos)
+        {
+            if (nome.Length == 0)
+            {
+                throw new NomeInvalidoExcpetion("Nome de player vazio", nome);
+            }
+
+            nome = Regex.Replace(nome, @"\s+", "");
+
+            this.nome = nome.Trim();
+
+            this.pontos = pontos;
         }
 
         public void setPontos(int pontos)

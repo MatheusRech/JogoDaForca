@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 
 namespace JogoDaForca
 {
@@ -24,18 +26,25 @@ namespace JogoDaForca
             return "Suas palavras";
         }
 
+        private static string removeAcentuacao(string text)
+        {
+            StringBuilder sbReturn = new StringBuilder();
+            var arrayText = text.Normalize(NormalizationForm.FormD).ToCharArray();
+            foreach (char letter in arrayText)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(letter) != UnicodeCategory.NonSpacingMark)
+                    sbReturn.Append(letter);
+            }
+            return sbReturn.ToString();
+        }
+
         public void informacoes(String informacoes)
         {
-            string[] aux = informacoes.Split(',');
 
-            palavrasUsuario = new string[aux.Length];
+            informacoes = removeAcentuacao(informacoes);
 
-            int qtde = 0;
-            foreach(string palavra in aux)
-            {
-                palavrasUsuario[qtde] = palavra;
-                qtde++;
-            }
+            palavrasUsuario = informacoes.Split(',');
+
         }
 
         public string[] palavras()

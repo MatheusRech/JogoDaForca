@@ -4,7 +4,7 @@ namespace JogoDaForca
 {
     class PalavrasInternas : BancoPalavras
     {
-        string[] palavrinhas = new string[20] { "Queijo", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
+        string[] palavrinhas = new string[20] { "Queijo", "Vladimir", "Macaco", "Pneu", "Forca", "ABCDEF", "Alfabeto", "Matematica", "Joao", "Maria", "Abacate", "Tramontina", "Vaca", "Laranja", "Computador", "Arvore", "inconstitucionalidade", "HAHA", "KKKKKK", "Testando"};
         public PalavrasInternas()
         {
 
